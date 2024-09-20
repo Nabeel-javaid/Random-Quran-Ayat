@@ -28,6 +28,8 @@ const ComfortButton = ({ setIsComforting }) => {
     >
       Are you sad?
     </Button>
+
+    
   );
 };
 

@@ -75,7 +75,6 @@ function App() {
 
       <ComfortButton setIsComforting={setIsComforting} />
 
-      {/* Render Comforting Ayat List if user clicks "Are you sad?" */}
       {isComforting && <ComfortAyatList />}
     </AppWrapper>
   );
