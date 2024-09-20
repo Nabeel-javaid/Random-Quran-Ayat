@@ -26,10 +26,8 @@ const ComfortButton = ({ setIsComforting }) => {
       whileTap={{ scale: 0.95 }}
       onClick={() => setIsComforting(true)}
     >
-      Are you sad?
+      Are you ...
     </Button>
-
-    
   );
 };
 
