@@ -31,8 +31,8 @@ const AyatDisplay = ({ ayat }) => {
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
     >
-      <Translation><strong>English:</strong> {ayat.english}</Translation>
-      <Translation><strong>Urdu:</strong> {ayat.urdu}</Translation>
+      <Translation><strong>English:</strong> <br/>{ayat.english}</Translation>
+      <Translation><strong>Urdu:</strong> <br/>{ayat.urdu}</Translation>
       <AyatInfo>{ayat.ayatInfo}</AyatInfo>
     </AyatWrapper>
   );
