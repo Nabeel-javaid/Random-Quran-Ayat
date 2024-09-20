@@ -4,6 +4,8 @@ import AyatDisplay from './components/AyatDisplay';
 import ComfortButton from './components/ComfortButton';
 import ComfortAyatList from './components/ComfortAyatList';
 import { motion } from 'framer-motion';
+import { Analytics } from '@vercel/analytics/react';
+
 
 const AppWrapper = styled.div`
   text-align: center;
@@ -76,7 +78,9 @@ function App() {
       <ComfortButton setIsComforting={setIsComforting} />
 
       {isComforting && <ComfortAyatList />}
+      <Analytics />
     </AppWrapper>
+    
   );
 }
 
