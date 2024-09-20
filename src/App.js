@@ -39,7 +39,7 @@ function App() {
     const randomAyatNumber = Math.floor(Math.random() * 6236) + 1;
     const editions = 'en.asad,ur.junagarhi';
     try {
-      const response = await fetch(`http://api.alquran.cloud/v1/ayah/${randomAyatNumber}/editions/${editions}`);
+      const response = await fetch(`https://api.alquran.cloud/v1/ayah/${randomAyatNumber}/editions/${editions}`);
       const data = await response.json();
       if (data.code === 200) {
         setRandomAyat({
