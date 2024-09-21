@@ -20,17 +20,14 @@ QuranHealing is a web application designed to provide spiritual comfort through 
 ### 4. **Search Functionality**
    - Users can search for specific ayats based on keywords in Arabic, English, or Urdu. This enables users to explore relevant Quranic verses based on their queries.
 
-### 5. **Audio Recitation**
-   - Users can listen to the audio recitation of the displayed ayats, adding an immersive experience.
-
-### 6. **Responsive Design**
+### 5. **Responsive Design**
    - The application has been designed to be fully responsive, ensuring a seamless experience across desktop, tablet, and mobile devices.
    - The UI is soothing, with calming colors, smooth animations, and clear typography, offering a peaceful experience for users.
 
-### 7. **Share Ayats**
+### 6. **Share Ayats**
    - Users can easily share any ayat via the built-in sharing functionality, allowing them to spread words of comfort with others.
 
-### 8. **Smooth Animations**
+### 7. **Smooth Animations**
    - The app uses **Framer Motion** for animations, ensuring smooth transitions and interactions, enhancing the overall user experience.
 
 ## Technologies Used
