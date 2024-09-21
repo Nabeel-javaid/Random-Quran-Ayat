@@ -3,9 +3,11 @@ import { motion } from 'framer-motion';
 import { ayatsHeartBroken } from './HeartBroken';
 import { ayatsSad } from './sad';
 import { ayatsHopeless } from './hopeless';
+import '../css/QuranHealing.css';
 
 function QuranHealing() {
   const [selectedAyats, setSelectedAyats] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const getAyats = (ayats) => {
     return ayats.map(ayat => ({
@@ -28,15 +30,57 @@ function QuranHealing() {
     setSelectedAyats(getAyats(ayatsHopeless));
   };
 
-  return (
-    <div style={{ textAlign: 'center', padding: '20px' }}>
-      <h2>Find Comfort in the Quran</h2>
-      
-      <button onClick={handleHurtClick} style={styles.button}>Are you hurt?</button>
-      <button onClick={handleSadClick} style={styles.button}>Are you sad?</button>
-      <button onClick={handleHopelessClick} style={styles.button}>Are you hopeless?</button>
+  const handleSearch = () => {
+    const allAyats = [...ayatsHeartBroken, ...ayatsSad, ...ayatsHopeless];
+    const filteredAyats = allAyats.filter(ayat => 
+      ayat.arabic.includes(searchQuery) || 
+      ayat.english.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      ayat.urdu.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setSelectedAyats(getAyats(filteredAyats));
+  };
 
-      <div style={styles.ayatContainer}>
+  const handleKeyPress = (event) => {
+    if (event.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
+  const handleShare = (ayat) => {
+    const shareText = `${ayat.arabic}\nEnglish: ${ayat.english}\nUrdu: ${ayat.urdu}\nReference: ${ayat.reference}`;
+    if (navigator.share) {
+      navigator.share({
+        title: 'Comforting Ayat from the Quran',
+        text: shareText,
+      }).catch(error => console.error('Error sharing:', error));
+    } else {
+      alert('Sharing not supported on this browser. Copy the text to share:\n' + shareText);
+    }
+  };
+
+  return (
+    <div className="container">
+      <h2 className="title">Find Comfort in the Quran</h2>
+
+      <div className="search-container">
+        <input
+          type="text"
+          placeholder="Search for ayats..."
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          onKeyPress={handleKeyPress}
+          className="search-input"
+        />
+        <button onClick={handleSearch} className="search-button">Search</button>
+      </div>
+      
+      <div className="button-container">
+        <button onClick={handleHurtClick} className="button">Are you hurt?</button>
+        <button onClick={handleSadClick} className="button">Are you sad?</button>
+        <button onClick={handleHopelessClick} className="button">Are you hopeless?</button>
+      </div>
+
+      <div className="ayat-container">
         {selectedAyats.map((ayat, index) => (
           <motion.div
             key={index}
@@ -44,67 +88,21 @@ function QuranHealing() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: 20 }}
             transition={{ duration: 0.5 }}
-            style={styles.ayat}
+            className="ayat"
           >
-            <h3 style={styles.arabic}>{ayat.arabic}</h3>
-            <p style={styles.english}><strong>English:</strong> {ayat.english}</p>
-            <p style={styles.urdu}><strong>Urdu:</strong> {ayat.urdu}</p>
-            <p style={styles.reference}><em>{ayat.reference}</em></p>
+            <div className="line"></div>
+            <div className="content">
+              <h3 className="arabic">{ayat.arabic}</h3>
+              <p className="english"><strong>English:</strong> {ayat.english}</p>
+              <p className="urdu"><strong>Urdu:</strong> {ayat.urdu}</p>
+              <p className="reference"><em>{ayat.reference}</em></p>
+              <button onClick={() => handleShare(ayat)} className="button">Share Ayat</button>
+            </div>
           </motion.div>
         ))}
       </div>
     </div>
   );
 }
-
-const styles = {
-  button: {
-    padding: '10px 20px',
-    fontSize: '16px',
-    backgroundColor: '#4CAF50',
-    color: 'white',
-    border: 'none',
-    borderRadius: '5px',
-    margin: '10px',
-    cursor: 'pointer',
-  },
-  ayatContainer: {
-    marginTop: '20px',
-    padding: '10px',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-  },
-  ayat: {
-    margin: '10px 0',
-    padding: '15px',
-    border: '1px solid #ddd',
-    borderRadius: '8px',
-    backgroundColor: '#fefefe',
-    boxShadow: '0 4px 12px rgba(0, 0, 0, 0.1)',
-    width: '80%',
-    maxWidth: '600px',
-    transition: 'transform 0.2s',
-    "&:hover": {
-      transform: 'scale(1.02)',
-    },
-  },
-  arabic: {
-    fontSize: '20px',
-    marginBottom: '5px',
-  },
-  english: {
-    color: '#555',
-    margin: '5px 0',
-  },
-  urdu: {
-    color: '#555',
-    margin: '5px 0',
-  },
-  reference: {
-    color: '#999',
-    fontStyle: 'italic',
-  },
-};
 
 export default QuranHealing;
