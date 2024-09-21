@@ -1,6 +1,4 @@
-Here’s a detailed `README.md` for your QuranHealing project:
 
----
 
 # QuranHealing
 
