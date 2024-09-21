@@ -5,8 +5,9 @@ import ComfortButton from './components/ComfortButton';
 import ComfortAyatList from './components/ComfortAyatList';
 import { motion } from 'framer-motion';
 import { Analytics } from '@vercel/analytics/react';
+import CurrentIslamicDate from './components/currentIslamicDate';  // <-- Import the Islamic Date component
 
-
+// Styling for the main app wrapper
 const AppWrapper = styled.div`
   text-align: center;
   padding: 40px;
@@ -15,18 +16,35 @@ const AppWrapper = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
+  position: relative; /* For positioning the Islamic date */
 `;
 
+// Styling for the heading
 const Heading = styled(motion.h1)`
   font-size: 2.8rem;
   color: #2e384d;
   margin-bottom: 20px;
 `;
 
+// Styling for the subheading
 const SubHeading = styled(motion.p)`
   font-size: 1.5rem;
   color: #58627a;
   margin-bottom: 40px;
+`;
+
+// Styling for the Islamic date notification banner
+const DateBanner = styled.div`
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background-color: #fff5e1;
+  color: #2e384d;
+  padding: 10px 20px;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1rem;
+  text-align: center;
 `;
 
 function App() {
@@ -64,6 +82,11 @@ function App() {
       >
         Random Ayat from Quran
       </Heading>
+
+      {/* Add the Islamic date in a small notification banner */}
+      <DateBanner>
+        <CurrentIslamicDate />
+      </DateBanner>
 
       <SubHeading
         initial={{ opacity: 0 }}

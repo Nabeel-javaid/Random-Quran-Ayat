@@ -3,6 +3,7 @@ import { motion } from 'framer-motion';
 import { ayatsHeartBroken } from './HeartBroken';
 import { ayatsSad } from './sad';
 import { ayatsHopeless } from './hopeless';
+import CurrentIslamicDate from './currentIslamicDate';  // <-- Import the Islamic Date component
 import '../css/QuranHealing.css';
 
 function QuranHealing() {
@@ -61,6 +62,8 @@ function QuranHealing() {
   return (
     <div className="container">
       <h2 className="title">Find Comfort in the Quran</h2>
+
+      
 
       <div className="search-container">
         <input
